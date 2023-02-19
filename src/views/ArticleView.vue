@@ -1,11 +1,18 @@
 <template>
+  <nav>
+    <button>
+      <RouterLink to="/">back</RouterLink>
+    </button>
+  </nav>
+  <h1 v-if="loading">{{ articleData[0].title }}</h1>
+  <h3 v-if="loading" style="color: white; text-align: center">{{ articleData[0].created_at.slice(0, -22) }}</h3>
   <p v-if="loading">{{ articleData[0].content }}</p>
 </template>
 
 <script setup lang="ts">
   import { supabase } from "@/scripts/supabase"
   import { onMounted, ref } from "vue"
-  import { useRoute } from 'vue-router';
+  import { useRoute , RouterLink} from 'vue-router';
 
   const route = useRoute()
   const articleData = ref();
@@ -22,3 +29,26 @@
     }
   })
 </script>
+
+<style scoped>
+  h1{
+    font-size: 40px;
+    width: 100%;
+    text-align: center;
+  }
+
+  p{
+    font-size: 25px;
+    width: 50%;
+    text-align: justify;
+    line-height: 2;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  button{
+    background-color: transparent;
+    border: none;
+  }
+</style>

@@ -4,9 +4,13 @@
       <RouterLink to="/">back</RouterLink>
     </button>
   </nav>
-  <h1 v-if="loading">{{ articleData[0].title }}</h1>
-  <h3 v-if="loading" style="color: white; text-align: center">{{ articleData[0].created_at.slice(0, -22) }}</h3>
-  <p v-if="loading">{{ articleData[0].content }}</p>
+  <transition name="fade" appear>
+    <div>
+      <h1 v-if="loading">{{ articleData[0].title }}</h1>
+      <h3 v-if="loading" style="color: white; text-align: center">{{ articleData[0].created_at.slice(0, -22) }}</h3>
+      <p v-if="loading" v-html="articleData[0].content"></p>
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">

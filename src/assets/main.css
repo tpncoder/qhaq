@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Phudu&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inria+Serif&display=swap');
 
 body{
-  font-family: monospace;
+  font-family: Inria Serif;
+	font-size: 0.7rem;
   background-color: rgb(0, 0, 0);
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgba(128, 128, 128, 0.233) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(128, 128, 128, 0.233) 1px, transparent 1px);
+  /* background-size: 40px 40px; */
+  /* background-image: */
+    /* linear-gradient(to right, rgba(128, 128, 128, 0.233) 1px, transparent 1px), */
+    /* linear-gradient(to bottom, rgba(128, 128, 128, 0.233) 1px, transparent 1px); */
 }
 
 a, h1, p{

@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-  import { supabase } from "@/scripts/supabase"
+  import { supabase } from "../scripts/supabase"
   import { onMounted, ref } from "vue"
   import { useRoute , RouterLink} from 'vue-router';
 
@@ -55,4 +55,9 @@
     background-color: transparent;
     border: none;
   }
+
+	img{
+		width: 30%;
+		height: 30%;
+	}
 </style>

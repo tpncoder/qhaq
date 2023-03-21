@@ -11,20 +11,28 @@
 	const searchFilter = ref();
 	const found = ref(true);
 
-  watch(filter, async (currentFilter, oldFilter) => {
-    const { data, error } = await supabase.from("articles").select().eq("filter", currentFilter.toLowerCase());
+  watch(filter, async (currentFilter) => {
+    const { data, error } = await supabase
+																		.from("articles")
+																		.select()
+																		.eq("filter", currentFilter.toLowerCase());
 		if(!data) return console.log(error);
 
     if (currentFilter.toLowerCase() !== "none"){
       articles.value = data;
       loaded.value = true;  
     }
+		
+		if (data.length == 0) return found.value = false;
   })
 
   onMounted(async () => {
-    const { data, error } = await supabase.from("articles").select();
+    const { data, error } = await supabase
+																		.from("articles")
+																		.select();
 
 		if(!data) return console.log(error)
+		console.log(data)
 
     if (data) {
       articles.value = data;
@@ -34,9 +42,10 @@
 
 	// function to search for articles based on input query 
 	async function articleSearch(title: String){
-		let { data, error } = await supabase.from("articles").select().eq("title", title);
-
-		// TODO: Refactor code by using guard clauses 
+		let { data, error } = await supabase
+																	.from("articles")
+																	.select()
+																	.eq("title", title);
 
 		if (!data) return;
 
@@ -53,8 +62,6 @@
 			articles.value = data;
 			loaded.value = true;
 
-			if (data.length == 0) return found.value = false;
-			
 			found.value = true;
 		}
 	}
@@ -69,7 +76,7 @@
 	<h1 style="padding-left: 1.5rem">Recent</h1>
 
 
-	<input v-model="searchFilter" @keyup.enter.prevent='() => { articleSearch(searchFilter) }'>
+	<input v-model="searchFilter" @keyup.enter.prevent='() => { articleSearch(searchFilter.toLowerCase()) }' placeholder="Search for posts">
   <select v-model="filter" class="filter">
     <option value="Dev">Dev</option>
     <option value="Test">Test</option>
@@ -77,17 +84,19 @@
 
 	<h1 v-if="!found">No articles found</h1>
 
-  <transition name="fade" appear>
-    <div v-if="loaded" class="articles">
-      <div v-for="item in articles" :key="item.title">
-        <div class="card">
-          <h2>
-            <RouterLink :to="'article' + '/' + item.title">{{ item.title }}</RouterLink>
-          </h2>
-        </div>
+  <div v-if="loaded" class="articles">
+    <div v-for="item in articles" :key="item.title">
+      <div class="card">
+        <h2>
+          <RouterLink :to="'article' + '/' + item.title.replaceAll(' ', '-')" class="title">{{ item.title }}</RouterLink>
+        </h2>
+				<p>{{ item.summary }}</p>
+				<div class="tags" v-for="tag in item.tags" :key="tag">
+					<button @click="filter = tag">{{ tag }}</button>
+				</div>
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <style scoped>
@@ -98,17 +107,24 @@ h3{
 
 .articles {
   color: #fff;
-  text-align: center;
+}
+
+.title:hover{
+	text-decoration: underline;
 }
 
 .card{
   background-color: #070707;
   padding: 0.7em;
   margin-bottom: 1.3em;
-	margin-left: 1.4rem;
-	margin-right: 1.4rem;
+	/* margin-left: 40.4rem; */
+	margin-left: 1.4em;
+	margin-right: 40.4rem;
   border: 1px solid rgba(128, 128, 128, 0.171);
   border-style: solid;
+	height: 13.5em;
+	text-align: left;
+	padding-left: 1.4rem;
 }
 
 .banner{
@@ -122,9 +138,12 @@ h3{
   padding: 1.3rem;
 }
 
+.title, p{
+	font-size: 1.3em;
+}
+
 h2{
   color: rgb(241, 241, 241);
-  text-align: center;
 }
 
 select{
@@ -151,6 +170,32 @@ input{
 	padding: 0.7rem;
 	margin-left: 1.5rem;
 	outline: none;
+	transition: ease-in 0.3s border;
+}
 
+input:focus{
+	border: 1px solid #dadada;
+}
+
+select:focus{
+	border: 1px solid #dadada;
+}
+
+.tags{
+	display: inline-block;
+}
+
+button{
+	margin-right: 0.5em;
+	padding: 0.6em;
+	border: none;
+	background: #352C2C20;
+	color: #dadada;
+	cursor: pointer;
+	transition: background 0.7s;
+}
+
+button:hover{
+	background: #352C2C70;
 }
 </style>

@@ -23,7 +23,7 @@
   const loading = ref(false);
 
   onMounted(async () => {
-    const { data, error } = await supabase.from("articles").select().eq("title", route.path.slice(9))
+    const { data, error } = await supabase.from("articles").select().eq("title", route.path.replaceAll('-', ' ').slice(9))
     if (data) {
       console.log(data);
       articleData.value = data;

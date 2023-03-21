@@ -7,8 +7,6 @@
   const loaded = ref(false);
   const articles = ref();
   const filter = ref();
-
-	const searchFilter = ref();
 	const found = ref(true);
 
   watch(filter, async (currentFilter) => {
@@ -76,7 +74,7 @@
 	<h1 style="padding-left: 1.5rem">Recent</h1>
 
 
-	<input v-model="searchFilter" @keyup.enter.prevent='() => { articleSearch(searchFilter.toLowerCase()) }' placeholder="Search for posts">
+	<input v-model="filter" @keyup='() => { articleSearch(filter.toLowerCase()) }' placeholder="Post or filter">
   <select v-model="filter" class="filter">
     <option value="Dev">Dev</option>
     <option value="Test">Test</option>

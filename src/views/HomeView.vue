@@ -7,6 +7,7 @@
   const loaded = ref(false);
   const articles = ref();
   const filter = ref();
+	const sFilter = ref();
 	const found = ref(true);
 
   watch(filter, async (currentFilter) => {
@@ -43,12 +44,15 @@
 		let { data, error } = await supabase
 																	.from("articles")
 																	.select()
-																	.eq("title", title);
 
 		if (!data) return;
+		console.log(data)
+
+		const filtData = data.filter(datum => datum.title.includes(title));
+		console.log(filtData)
 
     if (title.trim().length !== 0) {
-			articles.value = data;
+			articles.value = filtData;
       loaded.value = true;  
 
 			if (data.length == 0) return found.value = false;
@@ -74,7 +78,7 @@
 	<h1 style="padding-left: 1.5rem">Recent</h1>
 
 
-	<input v-model="filter" @keyup='() => { articleSearch(filter.toLowerCase()) }' placeholder="Post or filter">
+	<input v-model="sFilter" @keyup.enter.prevent='() => { articleSearch(sFilter.toLowerCase()) }' placeholder="Post or filter">
   <select v-model="filter" class="filter">
     <option value="Dev">Dev</option>
     <option value="Test">Test</option>

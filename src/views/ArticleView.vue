@@ -17,13 +17,20 @@
   import { supabase } from "../scripts/supabase"
   import { onMounted, ref } from "vue"
   import { useRoute , RouterLink} from 'vue-router';
+	import { marked } from 'marked';
 
   const route = useRoute()
   const articleData = ref();
   const loading = ref(false);
+	const html = ref();
 
   onMounted(async () => {
-    const { data, error } = await supabase.from("articles").select().eq("title", route.path.replaceAll('-', ' ').slice(9))
+    const { data, error } = await supabase
+																		.from("articles")
+																		.select()
+																		.eq("title", route.path.replaceAll('-', ' ').slice(9))
+
+
     if (data) {
       console.log(data);
       articleData.value = data;

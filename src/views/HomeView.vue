@@ -93,9 +93,9 @@
           <RouterLink :to="'article' + '/' + item.title.replaceAll(' ', '-')" class="title">{{ item.title }}</RouterLink>
         </h2>
 				<p>{{ item.summary }}</p>
-				<div class="tags" v-for="tag in item.tags" :key="tag">
+				<!-- <div class="tags" v-for="tag in item.tags" :key="tag">
 					<button @click="filter = tag">{{ tag }}</button>
-				</div>
+				</div> -->
       </div>
     </div>
   </div>
@@ -200,4 +200,5 @@ button{
 button:hover{
 	background: #352C2C70;
 }
+
 </style>

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 	import { onMounted, ref, watch } from 'vue';
 	import { supabase } from '../scripts/supabase'; 
 	import { RouterLink } from 'vue-router';

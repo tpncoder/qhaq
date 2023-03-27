@@ -18,7 +18,7 @@
 	const actPassword = ref('');
 
 	const submit = async () => {
-		if(!title.value || !content.value || !summary.value || !filter.value || !tags.value ) {
+		if(!title.value || !content.value || !summary.value || !filter.value ) {
 			return console.log("fill all fields");
 		}	
 

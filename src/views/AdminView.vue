@@ -48,17 +48,28 @@
 </script>
 
 <template>
-	<input v-model="email" v-if="!loggedIn">	
-	<input v-model="password" v-if="!loggedIn" type="password">	
-	<button @click="submit" v-if="!loggedIn">submit</button>
+	<h1 class="text-3xl px-10 pt-10 font-bold" v-if="!loggedIn">Welcome<br>back !</h1>
+	<div class="h-screen w-full flex px-5 mt-10">
+		<div class="p-5 w-80 dark:border-neutral-500">
+			<label for="email" class="text-base font-extralight pb-11 dark:text-white" v-if="!loggedIn">Email</label>
 
-	<div v-if="loggedIn">
-		<h2>
-			<RouterLink to='/create/article/'>create new article</RouterLink>
+			<input v-model="email" v-if="!loggedIn" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm" placeholder="Enter your email" id="email">	
+
+			<label for="password" class="text-base font-extralight pb-11 dark:text-white" v-if="!loggedIn">Password</label>
+
+			<input v-model="password" v-if="!loggedIn" type="password" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-sm" placeholder="Enter your password" id="password">	
+
+			<button class="relative left-[50%] translate-x-[-50%] dark:bg-neutral-200 p-4 text-md font-sans w-full bg-neutral-900 text-white dark:bg-neutral-900" @click="submit" v-if="!loggedIn">Submit</button>
+		</div>
+	</div>
+
+	<div v-if="loggedIn" class="absolute top-0">
+		<h2 class="text-xl m-5 border border-neutral-200 p-2 hover:bg-neutral-200 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
+			<RouterLink to='/create/article/'>Create New Article</RouterLink>
 		</h2>
 		<div class="articles" v-for="article in articles" :key="article.id">
 			<div class="card">
-				<h1>
+				<h1 class="text-2xl mx-5 p-2">
 					<RouterLink :to="'/edit/article/' + article.id">{{ article.title }}</RouterLink>
 				</h1>
 			</div>
@@ -66,23 +77,26 @@
 	</div>
 </template>
 
-<style scope>
-input, button{
-	padding: 0.5rem;
-	border-width: 1px;
-  border-color: #352C2C40;
-  margin-bottom: 5vh;
-  background-color: #070707;
-  color: white;
-	width: 8%;
-	padding: 0.7rem;
-	margin-left: 1.5rem;
-	outline: none;
-	transition: ease-in 0.3s border;
+<style scoped>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:-ms-input-placeholder { 
+	font-family: "Inria Serif";
+	text-align: left;
+	font-size: 15px;
+	color: var(--font-color);
 }
 
-input:focus{
-	border: 1px solid #dadada;
+::placeholder {
+	font-family: "Inria Serif";
+	font-size: 15px;
+	color: var(--font-color);
+	text-align: left;
 }
 
+label{
+	margin-bottom: 100px;
+}
 </style>

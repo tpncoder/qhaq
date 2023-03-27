@@ -10,6 +10,8 @@
 	const sFilter = ref();
 	const found = ref(true);
 
+	const filters = [ "Coding", "Hacking", "Open Source", "News", "Guide", "Test" ];
+
   watch(filter, async (currentFilter) => {
     const { data, error } = await supabase
 																		.from("articles")
@@ -69,20 +71,40 @@
 	}
 </script>
 
+
 <template>
   <div class="banner">
-		<b><h1>Q-BLOG</h1></b>
-    <h3>a nerd’s wonderland ( seriously. )</h3>
+		<h1>
+			<span style="color: #ffa112">Q</span>
+			- Blog  
+		</h1>
+    <h3 class="tagline">The hub of tech facts</h3>
   </div>
 
-	<h1 style="padding-left: 1.5rem">Recent</h1>
+	<div class="dyk" style="overflow: auto">
+		<div class="message" style="position: relative;">
+			<h2>Achieve technological enlightenment with Q-Blog</h2>
+			<p style="font-size: 1.5em">Did you know that we have advanced a lot in tech? You can use our resources to know about these advancements.</p>
+		</div>
+		<img 
+			src="../../public/buddha.png" 
+			style="
+				max-width: 18%; 
+				float: right;
+			"
+		>
+	</div>
 
+	<h1 style="text-align: center;">Articles</h1>
+	
+	<div class="filters">
+		<div v-for="(filt, index) in filters" :key="filt">
+			<button @click="() => { filter=filt.toLowerCase() }">{{ filt }}</button>
+		</div>
+	</div>
+	<br>
 
-	<input v-model="sFilter" @keyup.enter.prevent='() => { articleSearch(sFilter.toLowerCase()) }' placeholder="Post or filter">
-  <select v-model="filter" class="filter">
-    <option value="Dev">Dev</option>
-    <option value="Test">Test</option>
-  </select>
+	<input v-model="sFilter" class="search" @keyup.enter.prevent='() => { articleSearch(sFilter.toLowerCase()) }' placeholder="Seach for posts...">
 
 	<h1 v-if="!found">No articles found</h1>
 
@@ -93,22 +115,19 @@
           <RouterLink :to="'article' + '/' + item.title.replaceAll(' ', '-')" class="title">{{ item.title }}</RouterLink>
         </h2>
 				<p>{{ item.summary }}</p>
-				<!-- <div class="tags" v-for="tag in item.tags" :key="tag">
-					<button @click="filter = tag">{{ tag }}</button>
-				</div> -->
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.articles{
+	position: relative;
 
-h3{
-  color: white
 }
 
-.articles {
-  color: #fff;
+h3, h2{
+  color: var(--font-color); 
 }
 
 .title:hover{
@@ -116,75 +135,41 @@ h3{
 }
 
 .card{
-  background-color: #070707;
+  background-color: var(--card-bg-color);
   padding: 0.7em;
   margin-bottom: 1.3em;
-	/* margin-left: 40.4rem; */
-	margin-left: 1.4em;
-	margin-right: 40.4rem;
-  border: 1px solid rgba(128, 128, 128, 0.171);
+  border: 1px solid var(--border-color);
   border-style: solid;
 	height: 13.5em;
-	text-align: left;
-	padding-left: 1.4rem;
+	text-align: center;
+	width: 60%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .banner{
   margin-bottom: 5vh;
 	font-size: 1.6em;
-  /*background-color: rgb(241, 147, 40);*/
-  border-radius: 0.5rem;
-  /* border-image: linear-gradient(#b8205f, #4100aa) 30; */
-  border-width: 2px;
-  border-style: solid;
   padding: 1.3rem;
+	text-align: center;
 }
 
 .title, p{
 	font-size: 1.3em;
 }
-
-h2{
-  color: rgb(241, 241, 241);
-}
-
-select{
-  padding: 0.5rem;
-	border-width: 1px;
-  border-color: #352C2C40;
-  margin-bottom: 5vh;
-  background-color: #070707;
-  color: white;
-	width: 8%;
-	padding: 0.7rem;
-	margin-left: 1.5rem;
-	font-family: Inria Serif;
-}
-
 input{
-	padding: 0.5rem;
-	border-width: 1px;
-  border-color: #352C2C40;
-  margin-bottom: 5vh;
-  background-color: #070707;
-  color: white;
-	width: 8%;
-	padding: 0.7rem;
-	margin-left: 1.5rem;
+	width: 90%;
+	position: relative;
+	left: 50%;
+	margin-left: -45%;
+	background-color: var(--card-bg-color);
+	color: var(--font-color);
+	padding: 1.2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	outline: none;
-	transition: ease-in 0.3s border;
-}
-
-input:focus{
-	border: 1px solid #dadada;
-}
-
-select:focus{
-	border: 1px solid #dadada;
-}
-
-.tags{
-	display: inline-block;
+	border: 1px solid var(--border-color);
 }
 
 button{
@@ -192,7 +177,7 @@ button{
 	padding: 0.6em;
 	border: none;
 	background: #352C2C20;
-	color: #dadada;
+	color: var(--font-color);
 	cursor: pointer;
 	transition: background 0.7s;
 }
@@ -201,4 +186,80 @@ button:hover{
 	background: #352C2C70;
 }
 
+.filters div{
+	display: inline-block;
+}
+
+.dyk {
+	width: 100%;
+	height: 30%;
+	border-top: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.dyk .message {
+	border: 1px solid var(--border-color);
+	margin: 1em;
+	padding: 1.3em;
+	text-align: center;
+	width: 27em;
+	font-size: 13px;
+	margin-left: 40em;
+	display: inline-block;
+	background-color: var(--card-bg-color);
+} 
+
+.filters{
+	display: inline;
+	width: 70em;
+	text-align: center;
+	position: relative;
+	left: 50%;
+	margin-left: -20em;
+}
+
+.filters button{
+	background: none;
+	width: auto;
+	font-family: "Inria Serif";
+	color: var(--font-color);
+}
+
+.filters div:not(:first-child)::before {
+	content: " | ";
+	color: var(--border-color);
+}
+
+::-webkit-input-placeholder { 
+	font-family: "Inria Serif";
+	text-align: left;
+	font-size: 15px;
+	color: var(--font-color);
+}
+
+:-ms-input-placeholder { 
+	font-family: "Inria Serif";
+	text-align: left;
+	font-size: 15px;
+	color: var(--font-color);
+}
+
+::placeholder {
+	font-family: "Inria Serif";
+	text-align: left;
+	font-size: 15px;
+	color: var(--font-color);
+}
+
+@media ( max-width: 800px ) {
+	.filters{
+		display: none
+	}
+}
+
+@media ( max-width: 1300px ) {
+	.dyk{
+		display: none;
+	}
+}
 </style>

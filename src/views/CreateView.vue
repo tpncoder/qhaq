@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 	import { onMounted, ref, watch } from 'vue';
 	import { supabase } from '../scripts/supabase'; 
@@ -52,29 +51,63 @@
 </script>
 
 <template>
-	<input v-model="email" v-if="!loggedIn">	
-	<input v-model="password" v-if="!loggedIn" type="password">	
-	<button 
-		@click="() => {
-			if ( email == actEmail && password == actPassword ) {
-				loggedIn = true;
-			}
-		}"
-		v-if="!loggedIn"
-	>Log In</button>
-	
-	<div class="form" v-if="loggedIn">
-		<input placeholder="title" v-model="title">
-		<input placeholder="content" v-model="content">
-		<input placeholder="summary" v-model="summary">
-		<input placeholder="tags" v-model="tags">
-		<input placeholder="filter" v-model="filter">
-		<button @click="submit">submit</button>
+	<h1 class="text-3xl px-10 pt-10 font-bold" v-if="!loggedIn">Welcome<br>back !</h1>
+	<div class="h-screen w-full flex px-5 mt-10">
+		<div class="p-5 w-80 dark:border-neutral-500">
+			<label for="email" class="text-base font-extralight pb-11 dark:text-white" v-if="!loggedIn">Email</label>
+
+			<input v-model="email" v-if="!loggedIn" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm" placeholder="Enter your email" id="email">	
+
+			<label for="password" class="text-base font-extralight pb-11 dark:text-white" v-if="!loggedIn">Password</label>
+
+			<input v-model="password" v-if="!loggedIn" type="password" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-sm" placeholder="Enter your password" id="password">	
+
+			<button 
+				class="relative left-[50%] translate-x-[-50%] dark:bg-neutral-200 p-4 text-md font-sans w-full bg-neutral-900 text-white dark:bg-neutral-900" 
+				@click="() => { 
+					if ( email == actEmail && password == actPassword ) {
+						loggedIn = true;
+					}
+				}"
+ 				v-if="!loggedIn">Submit</button>
+		</div>
+	</div>
+
+	<div class="h-screen w-full flex px-5 mt-10 justify-center">
+		<div class="absolute top-10 w-1/3" v-if="loggedIn">
+			<input placeholder="title" v-model="title" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
+			<input placeholder="summary" v-model="summary" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
+			<input placeholder="filter" v-model="filter" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
+			<textarea placeholder="content" v-model="content" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm resize-none h-52"></textarea>
+			<button @click="submit" class="w-full p-3 text-sm bg-neutral-900 text-white">Done</button>
+		</div>
 	</div>
 </template>
 
 <style scoped>
-input{
-	display: block;
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:-ms-input-placeholder { 
+	font-family: "Inria Serif";
+	text-align: left;
+	font-size: 15px;
+	color: var(--font-color);
+}
+
+::placeholder {
+	font-family: "Inria Serif";
+	font-size: 15px;
+	color: var(--font-color);
+	text-align: left;
+}
+
+label{
+	margin-bottom: 100px;
 }
 </style>

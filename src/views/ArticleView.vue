@@ -27,7 +27,7 @@
     const { data, error } = await supabase
 																		.from("articles")
 																		.select()
-																		.eq("title", route.path.replaceAll('-', ' ').slice(9))
+																		.eq("title", route.path.slice(9))
 
 
     if (data) {

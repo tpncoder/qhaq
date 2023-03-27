@@ -112,7 +112,7 @@
     <div v-for="item in articles" :key="item.title">
       <div class="card">
         <h2>
-          <RouterLink :to="'article' + '/' + item.title.replaceAll(' ', '-')" class="title">{{ item.title }}</RouterLink>
+          <RouterLink :to="'article' + '/' + item.title" class="title">{{ item.title }}</RouterLink>
         </h2>
 				<p>{{ item.summary }}</p>
       </div>

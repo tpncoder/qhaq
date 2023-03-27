@@ -17,7 +17,6 @@
   import { supabase } from "../scripts/supabase"
   import { onMounted, ref } from "vue"
   import { useRoute , RouterLink} from 'vue-router';
-	import { marked } from 'marked';
 
   const route = useRoute()
   const articleData = ref();

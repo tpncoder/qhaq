@@ -49,10 +49,10 @@
 
   p{
     font-size: 25px;
-    width:70%;
+    width:80%;
     line-height: 2;
     position: relative;
-    left: 50%;
+    left: 0%;
     transform: translateX(-50%);
   }
 

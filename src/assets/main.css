@@ -29,3 +29,34 @@ a, h1, p{
   text-decoration: none;
   color: var(--font-color);
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 3px dotted var(--border-color);
+	cursor: pointer;
+}
+
+.tooltip .def {
+	visibility: hidden;
+  width: 120px;
+  background-color: var(--card-bg-color);
+	border: 1px solid var(--border-color);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+	top: -2em;
+	left: 0em;
+	margin-bottom: 2em;
+}
+
+.tooltip:hover .def {
+  visibility: visible;
+}
+
+pre{
+	background-color: var(--card-bg-color);
+	padding: 1em;
+}

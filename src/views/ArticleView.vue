@@ -49,8 +49,7 @@
 
   p{
     font-size: 25px;
-    width: 50%;
-    text-align: justify;
+    width:70%;
     line-height: 2;
     position: relative;
     left: 50%;
@@ -66,4 +65,5 @@
 		width: 30%;
 		height: 30%;
 	}
+
 </style>

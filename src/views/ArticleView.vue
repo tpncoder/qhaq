@@ -52,7 +52,7 @@
     width:80%;
     line-height: 2;
     position: relative;
-    left: 0%;
+    left: 50%;
     transform: translateX(-50%);
   }
 

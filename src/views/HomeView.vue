@@ -138,7 +138,7 @@ h3, h2{
   border-style: solid;
 	height: 13.5em;
 	text-align: center;
-	width: 60%;
+	width: 85%;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
@@ -162,7 +162,7 @@ input{
 	margin-bottom: 1em;
 	display: block;
   margin : 1.5em auto;
-	width: 60%
+	width: 85%
 }
 
 

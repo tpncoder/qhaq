@@ -25,7 +25,8 @@
 																		})
 																		.eq("id", id.value);
 
-		console.log("edited")
+		console.log("edited");
+		console.log(Date.now())
 	}
 </script>
 

@@ -48,17 +48,12 @@
 																	.select()
 
 		if (!data) return;
-		console.log(data)
 
 		const filtData = data.filter(datum => datum.title.includes(title));
-		console.log(filtData)
 
-    if (title.trim().length !== 0) {
+		if (title.trim().length !== 0 && data.length > 0) {
 			articles.value = filtData;
       loaded.value = true;  
-
-			if (data.length == 0) return found.value = false;
-
 			found.value = true;
 		} else {
 			let { data, error } = await supabase.from("articles").select()
@@ -88,7 +83,7 @@
 			<p style="font-size: 1.5em">Did you know that we have advanced a lot in tech? You can use our resources to know about these advancements.</p>
 		</div>
 		<img 
-			src="../../public/buddha.png" 
+			src="/buddha.png" 
 			style="
 				max-width: 18%; 
 				float: right;
@@ -105,20 +100,19 @@
 	</div>
 	<br>
 
-	<input v-model="sFilter" class="search" @keyup.enter.prevent='() => { articleSearch(sFilter.toLowerCase()) }' placeholder="Seach for posts...">
-
-	<h1 v-if="!found">No articles found</h1>
-
-  <div v-if="loaded" class="articles">
-    <div v-for="item in articles" :key="item.title">
-      <div class="card">
-        <h2>
-          <RouterLink :to="'article' + '/' + item.title" class="title">{{ item.title }}</RouterLink>
-        </h2>
-				<p>{{ item.summary }}</p>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<input v-model="sFilter" class="search" @keyup.enter.prevent='() => { articleSearch(sFilter.toLowerCase()) }' placeholder="Seach for posts...">
+  	<div v-if="loaded" class="articles">
+    	<div v-for="item in articles" :key="item.title">
+      	<div class="card">
+        	<h2>
+          	<RouterLink :to="'article' + '/' + item.title" class="title">{{ item.title }}</RouterLink>
+        	</h2>
+					<p>{{ item.summary }}</p>
+      	</div>
+    	</div>
+  	</div>
+	</div>
 </template>
 
 <style scoped>
@@ -160,18 +154,16 @@ h3, h2{
 	font-size: 1.3em;
 }
 input{
-	width: 90%;
-	position: relative;
-	left: 50%;
-	margin-left: -45%;
 	background-color: var(--card-bg-color);
 	color: var(--font-color);
-	padding: 1.2em;
-	margin-top: 1em;
-	margin-bottom: 1em;
-	outline: none;
 	border: 1px solid var(--border-color);
+	padding: 1em;
+	margin-bottom: 1em;
+	display: block;
+  margin : 1.5em auto;
+	width: 60%
 }
+
 
 button{
 	margin-right: 0.5em;
@@ -262,5 +254,14 @@ button:hover{
 	.dyk{
 		display: none;
 	}
+}
+	
+.container {
+	position: absolute;
+	width: 70%;
+	left: 50%;
+	margin-left: -35%;
+	height: 100%;
+	padding: 0;
 }
 </style>

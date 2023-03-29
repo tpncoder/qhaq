@@ -110,6 +110,7 @@
           	<RouterLink :to="'article' + '/' + item.title" class="title">{{ item.title }}</RouterLink>
         	</h2>
 					<p class="summary">{{ item.summary }}</p>
+          <RouterLink :to="'article' + '/' + item.title" class="title" style="text-decoration: underline;">Read More</RouterLink>
       	</div>
     	</div>
   	</div>
@@ -132,10 +133,13 @@ h3, h2{
 
 .summary{
 	width: 70%;
-	position: absolute;
+	position: relative;
 	left: 50%;
 	margin-left: -35%;
 	text-align: justify;
+	overflow: hidden;
+white-space: nowrap;
+	text-overflow: ellipsis;	
 }
 
 .card{

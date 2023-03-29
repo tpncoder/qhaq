@@ -109,7 +109,7 @@
         	<h2>
           	<RouterLink :to="'article' + '/' + item.title" class="title">{{ item.title }}</RouterLink>
         	</h2>
-					<p>{{ item.summary }}</p>
+					<p class="summary">{{ item.summary }}</p>
       	</div>
     	</div>
   	</div>
@@ -128,6 +128,14 @@ h3, h2{
 
 .title:hover{
 	text-decoration: underline;
+}
+
+.summary{
+	width: 70%;
+	position: absolute;
+	left: 50%;
+	margin-left: -35%;
+	text-align: justify;
 }
 
 .card{

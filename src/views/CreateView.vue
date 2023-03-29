@@ -81,7 +81,7 @@
 		</div>
 		
 	</div>
-	<div class="relative h-96 w-1/2 float-right p-3 -mt-48]" id="preview">
+	<div class="relative h-96 w-1/2 float-right p-3 -mt-48]" id="preview" v-if="!loggedIn">
 			<h1>{{ title }}</h1>
 			<div v-html="content"/>
 		</div>

@@ -10,7 +10,7 @@
 	const sFilter = ref();
 	const found = ref(true);
 
-	const filters = [ "Coding", "Hacking", "Open Source", "News", "Guide", "Test" ];
+	const filters = [ "Coding", "Hacking", "Open Source", "News", "Guide", "Linux" ];
 
   watch(filter, async (currentFilter) => {
     const { data, error } = await supabase

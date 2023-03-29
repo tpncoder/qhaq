@@ -6,7 +6,6 @@
 	const title = ref("");
 	const content = ref("");
 	const summary = ref("");
-	const tags = ref("");
 	const filter = ref("");
 	
 	const loggedIn = ref(false);
@@ -29,7 +28,6 @@
 																			content: content.value,
 																			summary: summary.value,
 																			filter: filter.value,
-																			tags: tags.value
 																		})
 
 		console.log("edited")
@@ -52,7 +50,7 @@
 
 <template>
 	<h1 class="text-3xl px-10 pt-10 font-bold" v-if="!loggedIn">Welcome<br>back !</h1>
-	<div class="h-screen w-full flex px-5 mt-10">
+	<div class="">
 		<div class="p-5 w-80 dark:border-neutral-500">
 			<label for="email" class="text-base font-extralight pb-11 dark:text-white" v-if="!loggedIn">Email</label>
 
@@ -73,7 +71,7 @@
 		</div>
 	</div>
 
-	<div class="h-screen w-full flex px-5 mt-10 justify-center">
+	<div class="">
 		<div class="absolute top-10 w-1/3" v-if="loggedIn">
 			<input placeholder="title" v-model="title" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
 			<input placeholder="summary" v-model="summary" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
@@ -81,7 +79,12 @@
 			<textarea placeholder="content" v-model="content" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm resize-none h-52"></textarea>
 			<button @click="submit" class="w-full p-3 text-sm bg-neutral-900 text-white">Done</button>
 		</div>
+		
 	</div>
+	<div class="relative h-96 w-1/2 float-right p-3 -mt-48]" id="preview">
+			<h1>{{ title }}</h1>
+			<div v-html="content"/>
+		</div>
 </template>
 
 <style scoped>
@@ -109,5 +112,18 @@ body {
 
 label{
 	margin-bottom: 100px;
+}
+
+#preview{
+	border: 1px solid var(--border-color);
+	color: var(--font-color);
+	overflow-y: scroll;
+	font-size: 20px;
+}
+
+#preview h1{
+	font-size: 40px;
+	text-align: center;
+	font-weight: bold;
 }
 </style>

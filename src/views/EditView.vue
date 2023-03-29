@@ -21,7 +21,6 @@
 																			title: title.value,
 																			content: content.value,
 																			summary: summary.value,
-																			tags: tags.value
 																		})
 																		.eq("id", id.value);
 
@@ -31,7 +30,7 @@
 </script>
 
 <template>
-	<div class="h-screen w-full flex px-5 mt-10 justify-center">
+	<div class="">
 		<div class="absolute top-10 w-1/3">
 			<input placeholder="id" v-model="id" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
 			<input placeholder="title" v-model="title" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
@@ -39,6 +38,10 @@
 			<input placeholder="summary" v-model="summary" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
 			
 			<button @click="submit" class="w-full p-3 text-sm bg-neutral-900 text-white">Done</button>
+		</div>
+		<div class="relative h-96 w-1/2 float-right p-3" id="preview">
+			<h1>{{ title }}</h1>
+			<div v-html="content"/>
 		</div>
 	</div>
 </template>
@@ -70,4 +73,16 @@ label{
 	margin-bottom: 100px;
 }
 
+#preview{
+	border: 1px solid var(--border-color);
+	color: var(--font-color);
+	overflow-y: scroll;
+	font-size: 20px;
+}
+
+#preview h1{
+	font-size: 40px;
+	text-align: center;
+	font-weight: bold;
+}
 </style>

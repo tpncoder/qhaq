@@ -48,7 +48,7 @@
   }
 
   p{
-    font-size: 25px;
+    font-size: 20px;
     width:80%;
     line-height: 2;
     position: relative;

@@ -66,7 +66,7 @@ pre{
     word-wrap: break-word; 
 }
 
-.inline-code {
+#inline-code {
 	display: inline;
 	color: #188038;
 	padding: 0.2em;

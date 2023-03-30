@@ -71,14 +71,20 @@
 <template>
 	<RouterLink to="admin/">Admin Panel</RouterLink>
   <div class="banner">
-		<h1>
+		<h1 style="font-size: 2.5em">
 			<span style="color: #ffa112">Q</span>
 			- Blog  
 		</h1>
     <h3 class="tagline">The hub of tech facts</h3>
   </div>
 
+
 	<div class="dyk" style="overflow: auto">
+		<div class="quote" style="position: relative;">
+			<h2>
+				"Don't just search for answers – find them with QBlog, the ultimate source of trusted information!"
+			</h2>
+		</div>
 		<div class="message" style="position: relative;">
 			<h2>Achieve technological enlightenment with Q-Blog</h2>
 			<p style="font-size: 1.5em">Did you know that we have advanced a lot in tech? You can use our resources to know about these advancements.</p>
@@ -87,7 +93,7 @@
 			src="/buddha.png" 
 			style="
 				max-width: 18%; 
-				float: right;
+				justify-content: space-between;
 			"
 		>
 	</div>
@@ -95,7 +101,7 @@
 	<h1 style="text-align: center;">Articles</h1>
 	
 	<div class="filters">
-		<div v-for="(filt, index) in filters" :key="filt">
+		<div v-for="(filt, index) in filters" :key="index">
 			<button @click="() => { filter=filt.toLowerCase() }">{{ filt }}</button>
 		</div>
 	</div>
@@ -158,7 +164,7 @@ white-space: nowrap;
 
 .banner{
   margin-bottom: 5vh;
-	font-size: 1.6em;
+	font-size: 1.8em;
   padding: 1.3rem;
 	text-align: center;
 }
@@ -201,6 +207,9 @@ button:hover{
 	height: 30%;
 	border-top: 1px solid var(--border-color);
 	border-bottom: 1px solid var(--border-color);
+	display: flex;
+	align-items: stretch;
+	justify-items: center;
 }
 
 .dyk .message {
@@ -210,10 +219,30 @@ button:hover{
 	text-align: center;
 	width: 27em;
 	font-size: 13px;
-	margin-left: 40em;
 	display: inline-block;
 	background-color: var(--card-bg-color);
+	align-self: stretch;
+	margin-left: 5em;
 } 
+
+.dyk > .quote{
+	margin: 1em;
+	padding: 1.3em;
+	text-align: center;
+	width: 27em;
+	font-size: 13px;
+	display: inline-block;
+	align-self: stretch;
+	display: flex;
+}
+
+.dyk > .quote > h2 {
+	align-self: center;
+}
+
+.dyk > img {
+ margin-left: auto
+}
 
 .filters{
 	display: inline;

@@ -22,7 +22,6 @@ nav{
 	position: relative;
 	top: 0;
 	left: 0;
-	border: 1px solid var(--border-color);
 	display: flex;
 	justify-content: center;
 	font-family: "Inria Sans";

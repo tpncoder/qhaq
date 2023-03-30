@@ -143,6 +143,9 @@
 </template>
 
 <style scoped>
+body{
+}
+
 .articles{
 	position: relative;
 }

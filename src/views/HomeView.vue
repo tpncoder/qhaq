@@ -70,7 +70,6 @@
 
 
 <template>
-	<RouterLink to="admin/">Admin Panel</RouterLink>
   <div class="banner">
 		<h1 style="font-size: 2.5em">
 			<span style="color: #ffa112">Q</span>

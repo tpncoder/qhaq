@@ -1,9 +1,4 @@
 <template>
-  <nav>
-    <button>
-      <RouterLink to="/">back</RouterLink>
-    </button>
-  </nav>
   <transition name="fade" appear>
     <div>
       <h1 v-if="loading">{{ articleData[0].title }}</h1>

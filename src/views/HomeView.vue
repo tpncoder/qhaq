@@ -49,9 +49,9 @@
 
 		if (!data) return;
 
-		const filtData = data.filter(datum => { 
-			datum.title.toLowerCase().trim().includes(title.toLowerCase().trim())
-		});
+		const filtData = data.filter(datum =>  
+			datum.title.toLowerCase().includes(title.toLowerCase())
+		);
 
 		if (title.trim().length !== 0 && data.length > 0) {
 			articles.value = filtData;

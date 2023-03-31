@@ -64,7 +64,7 @@
 	</div>
 
 	<div v-if="loggedIn" class="absolute top-0">
-		<h2 class="text-xl m-5 border border-neutral-200 p-2 hover:bg-neutral-200 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
+		<h2 class="text-xl m-5 border border-neutral-200 p-2 hover:bg-neutral-200 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600 relativem mt-20 w-48">
 			<RouterLink to='/create/article/'>Create New Article</RouterLink>
 		</h2>
 		<div class="articles" v-for="article in articles" :key="article.id">

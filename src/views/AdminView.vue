@@ -70,7 +70,22 @@
 		<div class="articles" v-for="article in articles" :key="article.id">
 			<div class="card">
 				<h1 class="text-2xl mx-5 p-2">
-					<RouterLink :to="'/edit/article/' + article.id">{{ article.title }}</RouterLink>
+					{{ article.id }}
+					&nbsp;
+					{{ article.title }}
+					<div class="inline-block ml-5 text-neutral-500" id="actions">
+						<RouterLink :to="'/edit/article/' + article.id">edit</RouterLink>
+						<button 
+							class="ml-4"
+							@click="async () => {								
+								const { data, error } = await supabase
+  																							.from('articles')
+																								.delete()
+																								.eq('id', article.id)
+
+							}"	
+						>remove</button>
+					</div>
 				</h1>
 			</div>
 		</div>

@@ -23,6 +23,7 @@
     "@types/highlight.js": "^10.1.0",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.12",
+    "@vercel/analytics": "^0.1.11",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",

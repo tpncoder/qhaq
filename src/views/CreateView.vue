@@ -72,7 +72,7 @@
 	</div>
 
 	<div class="">
-		<div class="absolute top-10 w-1/3" v-if="loggedIn">
+		<div class="absolute top-20 w-1/3" v-if="loggedIn">
 			<input placeholder="title" v-model="title" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
 			<input placeholder="summary" v-model="summary" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
 			<input placeholder="filter" v-model="filter" class="w-full border border-neutral-100 block p-3 mb-5 text-md outline-none placeholder:text-left placeholder:text-sm">
@@ -81,7 +81,7 @@
 		</div>
 		
 	</div>
-	<div class="relative h-96 w-1/2 float-right p-3 -mt-48]" id="preview" v-if="!loggedIn">
+	<div class="relative h-96 w-1/2 float-right p-3 -mt-48]" id="preview" v-if="loggedIn">
 			<h1>{{ title }}</h1>
 			<div v-html="content"/>
 		</div>

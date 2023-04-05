@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { inject } from '@vercel/analytics';
+
 import { RouterView, RouterLink } from 'vue-router'
+
+inject();
 </script>
 
 <template>
@@ -30,7 +34,6 @@ nav{
 nav > ul > li {
 	display: inline-block;
 	font-size: 1.2em;
-	font-family: 
 }
 
 nav > ul > li:not(:first-child){
